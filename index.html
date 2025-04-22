@@ -1,0 +1,24 @@
+<script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
+<script>
+  const COLOR = 'AliceBlue'
+  
+  function setup() {
+    nn.get('body').css({backgroundColor: COLOR})
+    nn.create('div')
+      .set({id: 'femalediv'})
+      .css({
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      height: nn.height,
+      width: nn.width / 2,
+      borderStyle: 'solid',
+      borderWidth: '5px',
+      borderColor: 'Red'
+    })
+    .addTo('body')
+    
+  }
+  nn.on('load', setup)
+
+</script>
