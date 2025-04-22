@@ -1,9 +1,22 @@
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
 <script>
+  /* global nn*/
   const COLOR = 'AliceBlue'
-  
+  const DOLLS = ['207.gif', '47.gif', 'My-Keldoll-1.gif',
+                'a.gif', 'a26.gif', 'america5.gif', 
+                'doll010.gif', 'doll016.gif', 
+                'doll028.gif', 'doll046.gif',
+                'doll060.gif', 'doll061.gif', 'doll062.gif',
+                'dr6.gif', 'jackiehellokitty.gif',
+                'mensch020.gif', 'mommy.gif', 'newani9.gif',
+                'p.gif', 'personnage_104.gif',
+                'personnage_146.gif', 'smer.gif',
+                'trendy-fairy.gif', 'uni2.gif', 'white.gif',
+                'z12.gif', 'z3.gif', 'z4.gif', 'z7.gif']
   function setup() {
     nn.get('body').css({backgroundColor: COLOR})
+    
+    
     nn.create('div')
       .set({id: 'femalediv'})
       .css({
@@ -12,13 +25,43 @@
       left: 0,
       height: nn.height,
       width: nn.width / 2,
-      borderStyle: 'solid',
-      borderWidth: '5px',
-      borderColor: 'Red'
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))',
+      gap: 0
     })
     .addTo('body')
     
+    drawDolls()
   }
+
+  
+  function drawDolls() {
+    const cols = Math.floor(nn.width / 2 / 75)
+    const rows = Math.floor(nn.height / 100)
+    const numImages = cols * rows
+    
+    for (let i = 0; i < numImages; i++) {
+      let imageSrc = nn.random(DOLLS)
+
+      let imgDiv = nn.create('div')
+      .css({
+        width: '75px',
+        height: '100px'
+      })
+      .addTo('#femalediv')
+      
+      nn.create('img')
+        .set({src: imageSrc})
+        .css({
+        height: '100%'
+      })
+        .addTo(imgDiv)
+    }
+
+  }
+  
+  
+  
   nn.on('load', setup)
 
 </script>
