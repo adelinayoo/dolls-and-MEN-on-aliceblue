@@ -13,9 +13,24 @@
                 'personnage_146.gif', 'smer.gif',
                 'trendy-fairy.gif', 'uni2.gif', 'white.gif',
                 'z12.gif', 'z3.gif', 'z4.gif', 'z7.gif']
+  const MEN = ['1.gif', '2.gif', '7.gif', '010.gif',
+              '013.gif', '017.gif', '019.gif',
+              '414.gif', 'a20.gif', 'a71.gif',
+              'a144.gif', 'a146.gif', 'a155.gif',
+              'art.gif', ' axer.gif', 'beach.gif',
+              'beatnik-ani.gif', 'butthead.gif',
+              'camrarun.gif', 'capitaine.gif',
+              'dessinateur_1.gif',
+              'houthakker.gif', 'jopizza.gif',
+              'manlooking.gif', 'pacaughtclr1.gif',
+              'politie.gif', '879.gif']
+  
+  const cols = Math.floor(nn.width / 2 / 75)
+  const rows = Math.floor(nn.height / 100)
+  const numImages = cols * rows
+  
   function setup() {
     nn.get('body').css({backgroundColor: COLOR})
-    
     
     nn.create('div')
       .set({id: 'femalediv'})
@@ -32,13 +47,24 @@
     .addTo('body')
     
     drawDolls()
+    
+    nn.create('div')
+      .set({id: 'malediv'})
+      .css({
+      position: 'absolute',
+      top: 0,
+      left: nn.width / 2,
+      height: nn.height,
+      width: nn.width / 2
+    })
+      .addTo('body')
+    
+    drawMen()
   }
 
   
   function drawDolls() {
-    const cols = Math.floor(nn.width / 2 / 75)
-    const rows = Math.floor(nn.height / 100)
-    const numImages = cols * rows
+    
     
     for (let i = 0; i < numImages; i++) {
       let imageSrc = nn.random(DOLLS)
@@ -60,7 +86,27 @@
 
   }
   
-  
+  async function drawMen() {
+    for (let i = 0; i < numImages; i++) {
+      const imageSrc = nn.random(MEN)
+
+      const gif = await nn.loadImage(imageSrc)
+      let gifW = gif.width
+      let gifH = gif.height
+      let maxX = nn.width / 2 - gifW
+      let maxY = nn.height - gifH
+
+      nn.create('img')
+        .set({src: imageSrc})
+        .css({
+        position: 'absolute',
+        left: Math.floor(Math.random() * maxX),
+        top: Math.floor(Math.random() * maxY),
+      })
+        .addTo('#malediv')
+    
+    }
+  }
   
   nn.on('load', setup)
 
