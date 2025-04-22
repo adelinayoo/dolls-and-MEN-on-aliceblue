@@ -1,7 +1,6 @@
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
 <script>
   /* global nn*/
-  const COLOR = 'AliceBlue'
   const DOLLS = ['207.gif', '47.gif', 'My-Keldoll-1.gif',
                 'a.gif', 'a26.gif', 'america5.gif', 
                 'doll010.gif', 'doll016.gif', 
@@ -20,18 +19,16 @@
               'art.gif', ' axer.gif', 'beach.gif',
               'beatnik-ani.gif', 'butthead.gif',
               'camrarun.gif', 'capitaine.gif',
-              'dessinateur_1.gif',
-              'houthakker.gif', 'jopizza.gif',
-              'manlooking.gif', 'pacaughtclr1.gif',
-              'politie.gif', '879.gif']
+              'dessinateur_1.gif', 'houthakker.gif',
+              'jopizza.gif', 'manlooking.gif',
+              'pacaughtclr1.gif', 'politie.gif',
+              '879.gif']
   
   const cols = Math.floor(nn.width / 2 / 75)
   const rows = Math.floor(nn.height / 100)
   const numImages = cols * rows
   
-  function setup() {
-    nn.get('body').css({backgroundColor: COLOR})
-    
+  function setup() {    
     nn.create('div')
       .set({id: 'femalediv'})
       .css({
@@ -42,7 +39,8 @@
       width: nn.width / 2,
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(75px, 1fr))',
-      gap: 0
+      gap: 0,
+      backgroundColor: 'AliceBlue'
     })
     .addTo('body')
     
@@ -55,7 +53,8 @@
       top: 0,
       left: nn.width / 2,
       height: nn.height,
-      width: nn.width / 2
+      width: nn.width / 2,
+      backgroundColor: 'Gainsboro'
     })
       .addTo('body')
     
